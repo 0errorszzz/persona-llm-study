@@ -23,3 +23,20 @@ Using a contrastive activation analysis at **Layer 15 (MLP gate_proj)**, we iden
 ## Next Steps
 - **Cross-Validation:** Test if these indices remain stable across similar roles (e.g., Professor vs. Pupil).
 - **Ablation Studies:** Zero-out these neurons to observe the causal effect on model output.
+## Neuron Interpretation Results (Layer 15)
+-Through cross-validation across multiple persona pairs, we have identified two distinct "Identity Switches":
+
+### 1. The "Academic Authority" Neuron: Index #8372
+- **Characteristics**: Extremely sensitive to educational roles.
+- **Performance**: Rank 0 (Top 1) for *Teacher vs. Student*, Rank 5 for *Doctor vs. Nurse*.
+- **Interpretation**: Encodes seniority based on knowledge transmission and mentorship.
+
+### 2. The "Professional Hierarchy" Neuron: Index #8758
+- **Characteristics**: Dominates corporate and institutional structures.
+- **Performance**: Rank 0 (Top 1) for both *Doctor vs. Nurse* and *Manager vs. Intern*.
+- **Interpretation**: Encodes power dynamics and administrative seniority within a professional organization.
+
+## Methodology: How we found them
+1. **Extraction**: Used `gate_proj` hooks at Layer 15 of Llama-2-7B to capture 11,008-dimensional activations.
+2. **Contrastive Analysis**: Calculated the absolute difference ($\Delta$) between high-status and low-status persona prompts.
+3. **Cross-Validation**: Filtered neurons by testing across 3 different domains (Education, Medicine, Corporate) to eliminate word-specific noise.
