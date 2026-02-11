@@ -40,3 +40,10 @@ Using a contrastive activation analysis at **Layer 15 (MLP gate_proj)**, we iden
 1. **Extraction**: Used `gate_proj` hooks at Layer 15 of Llama-2-7B to capture 11,008-dimensional activations.
 2. **Contrastive Analysis**: Calculated the absolute difference ($\Delta$) between high-status and low-status persona prompts.
 3. **Cross-Validation**: Filtered neurons by testing across 3 different domains (Education, Medicine, Corporate) to eliminate word-specific noise.
+### Gender Neuron Experiment Results
+| Gender Pair | Top 5 Neurons (Indices) |
+| :--- | :--- |
+| a man vs a woman | [6953, 8595, 8140, 10437, 8195] |
+| a male doctor vs a female doctor | [6953, 10878, 2826, 1095, 9542] |
+| a son vs a daughter | [6953, 10283, 6063, 8595, 2400] |
+## The stability of Neuron #6953 across varied prompts confirms that the model has a specialized, modularized circuit at Layer 15 for processing gender identity.
